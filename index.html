@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawmigo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <!-- CONTENEDOR LOGIN / REGISTRO -->
+    <main id="auth-container">
+        <div class="contenedor__todo">
+            <div class="caja__trasera">
+                <div class="caja__trasera-login">
+                    <h3>¿Ya eres miembro de Pawmigo ?</h3>
+                    <p>Inicia sesión para entrar en la página</p>
+                    <button id="btn__iniciar-sesion">Iniciar Sesión</button>
+                </div>
+                <div class="caja__trasera-register">
+                    <h3>¿A qué esperas? ¿ Únete a Pawmigo!</h3>
+                    <p>Regístrate para que puedas iniciar sesión</p>
+                    <button id="btn__registrarse">Regístrarse</button>
+                </div>
+            </div>
+
+            <div class="contenedor__login-register">
+                <form id="formulario__login" class="formulario__login">
+                    <h2>Iniciar Sesión</h2>
+                    <input type="email" id="login-email" placeholder="Correo Electrónico" required>
+                    <input type="password" id="login-password" placeholder="Contraseña" required>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="login-keep-session" checked>
+                        <span>Mantener sesión iniciada</span>
+                    </label>
+                    <button type="submit">Entrar</button>
+                </form>
+
+                <form id="formulario__register" class="formulario__register">
+                    <h2>Regístrarse</h2>
+                    <input type="text" id="register-name" placeholder="Nombre completo" required>
+                    <input type="email" id="register-email" placeholder="Correo Electrónico" required>
+                    <input type="password" id="register-password" placeholder="Contraseña" required>
+                    <input type="password" id="register-password-repeat" placeholder="Repetir contraseña" required>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="register-keep-session" checked>
+                        <span>Mantener sesión iniciada</span>
+                    </label>
+                    <button type="submit">Regístrarse</button>
+                </form>
+            </div>
+        </div>
+        <div id="message"></div>
+    </main>
+
+    <!-- NUEVO CONTENEDOR: COMPLETAR REGISTRO -->
+    <main id="extra-data-container" style="display:none;">
+        <div class="contenedor__todo">
+            <div class="contenedor__login-register">
+                <form id="extraDataForm" class="formulario__register">
+                    <h2>Completa tu perfil</h2>
+                    <input type="text" id="extra-apellido" placeholder="Apellido" required>
+                    <input type="text" id="extra-usuario" placeholder="Nombre de usuario" required>
+                    <input type="tel" id="extra-telefono" placeholder="Teléfono" required>
+                    <button type="submit">Guardar y continuar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- APP -->
+    <div id="app-container" style="display:none;">
+        <nav class="main-menu">
+            <button class="menu-btn active" data-section="guardados">Guardados</button>
+            <button class="menu-btn" data-section="explorar">Explorar</button>
+            <button class="menu-btn" data-section="mascotas">Mascotas</button>
+            <button class="menu-btn" data-section="citas">Citas</button>
+            <button class="menu-btn" data-section="perfil">Perfil</button>
+        </nav>
+
+        <main>
+            <section id="guardados" class="section visible">
+                <h2>Guardados</h2>
+                <div id="guardados-content"></div>
+            </section>
+            <section id="explorar" class="section">
+                <h2>Explorar</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="todos">Todos</button>
+                    <button class="filter-btn" data-filter="areasCaninas">Áreas Caninas</button>
+                    <button class="filter-btn" data-filter="guarderias">Guarderías para Mascotas</button>
+                    <button class="filter-btn" data-filter="veterinarias">Veterinarios</button>
+                    <button class="filter-btn" data-filter="tiendas">Tiendas de Mascotas</button>
+                    <button class="filter-btn" data-filter="playasCaninas">Playas Caninas</button>
+                </div>
+                <div id="explorar-content"></div>
+            </section>
+            <section id="mascotas" class="section">
+                <h2>Mascotas</h2>
+                <div id="mascotas-content"></div>
+            </section>
+            <section id="citas" class="section">
+                <h2>Citas</h2>
+                <div id="citas-content"></div>
+            </section>
+            <section id="perfil" class="section">
+                <h2>Perfil</h2>
+                <div id="perfil-content"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-storage-compat.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
